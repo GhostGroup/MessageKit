@@ -135,7 +135,7 @@ internal extension MessagesViewController {
 #if !os(visionOS)
         let inputAccessoryViewHeight = inputAccessoryView?.frame.height ?? 0
 #else
-        let inputAccessoryViewHeight = 0
+        let inputAccessoryViewHeight: CGFloat = 0
 #endif
         return max(0, inputAccessoryViewHeight + additionalBottomInset - automaticallyAddedBottomInset)
     }
