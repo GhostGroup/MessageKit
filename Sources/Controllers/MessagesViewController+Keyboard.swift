@@ -38,7 +38,9 @@ internal extension MessagesViewController {
     func removeKeyboardObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UITextView.textDidBeginEditingNotification, object: nil)
+#if !os(visionOS)
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+#endif
     }
 
     // MARK: - Notification Handlers
@@ -130,7 +132,11 @@ internal extension MessagesViewController {
     }
 
     func requiredInitialScrollViewBottomInset() -> CGFloat {
+#if !os(visionOS)
         let inputAccessoryViewHeight = inputAccessoryView?.frame.height ?? 0
+#else
+        let inputAccessoryViewHeight = 0
+#endif
         return max(0, inputAccessoryViewHeight + additionalBottomInset - automaticallyAddedBottomInset)
     }
 
