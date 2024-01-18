@@ -70,13 +70,11 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     public override init() {
         super.init()
         setupView()
-        setupObserver()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
-        setupObserver()
     }
 
     deinit {
@@ -87,10 +85,6 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private func setupView() {
         sectionInset = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
-    }
-    
-    private func setupObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesCollectionViewFlowLayout.handleOrientationChange(_:)), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
 
     // MARK: - Typing Indicator API
@@ -148,11 +142,6 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
         guard let flowLayoutContext = context as? UICollectionViewFlowLayoutInvalidationContext else { return context }
         flowLayoutContext.invalidateFlowLayoutDelegateMetrics = shouldInvalidateLayout(forBoundsChange: newBounds)
         return flowLayoutContext
-    }
-
-    @objc
-    private func handleOrientationChange(_ notification: Notification) {
-        invalidateLayout()
     }
 
     // MARK: - Cell Sizing
