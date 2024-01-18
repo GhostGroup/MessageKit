@@ -225,7 +225,9 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
     private func setupDefaults() {
         extendedLayoutIncludesOpaqueBars = true
         view.backgroundColor = .collectionViewBackground
+#if !os(visionOS)
         messagesCollectionView.keyboardDismissMode = .interactive
+#endif
         messagesCollectionView.alwaysBounceVertical = true
         messagesCollectionView.backgroundColor = .collectionViewBackground
         if #available(iOS 13.0, *) {
@@ -444,7 +446,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
         guard let cell = cell as? TypingIndicatorCell else { return }
         cell.typingBubble.startAnimating()
     }
-
+#if !os(visionOS)
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let messagesCollectionView = collectionView as? MessagesCollectionView else {
             fatalError(MessageKitError.notMessagesCollectionView)
@@ -501,7 +503,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
             break
         }
     }
-
+#endif
     // MARK: - Helpers
     
     private func addObservers() {
