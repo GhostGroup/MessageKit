@@ -34,7 +34,8 @@ public struct LocationMessageSnapshotOptions {
     ///   - showsPointsOfInterest: A Boolean value indicating whether the snapshot image should display points of interest.
     ///   - span: The span of the snapshot.
     ///   - scale: The scale of the snapshot.
-    public init(showsBuildings: Bool = false, showsPointsOfInterest: Bool = false, span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 0), scale: CGFloat = UIScreen.main.scale) {
+    public init(showsBuildings: Bool = false, showsPointsOfInterest: Bool = false, span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 0), scale: CGFloat? = nil) {
+        let scale = scale ?? Screen.scale
         self.showsBuildings = showsBuildings
         self.showsPointsOfInterest = showsPointsOfInterest
         self.span = span
@@ -61,4 +62,22 @@ public struct LocationMessageSnapshotOptions {
     /// The default value of this property uses the `UIScreen.main.scale`.
     public var scale: CGFloat
     
+}
+
+internal struct Screen {
+    static var scale: CGFloat {
+#if !os(visionOS)
+        return UIScreen.main.scale
+#else
+        return 1
+#endif
+    }
+    
+    static var bounds: CGRect {
+#if !os(visionOS)
+        return UIScreen.main.bounds
+#else
+        return CGRect(x: 0, y: 0, width: 360, height: 500)
+#endif
+    }
 }

@@ -361,7 +361,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     /// - attributes: The `MessagesCollectionViewLayoutAttributes` for the cell.
     open func layoutTimeLabelView(with attributes: MessagesCollectionViewLayoutAttributes) {
         let paddingLeft: CGFloat = 10
-        let origin = CGPoint(x: UIScreen.main.bounds.width + paddingLeft,
+        let origin = CGPoint(x: Screen.bounds.width + paddingLeft,
                              y: messageContainerView.frame.minY + messageContainerView.frame.height * 0.5 - messageTimestampLabel.font.ascender * 0.5)
         let size = CGSize(width: attributes.messageTimeLabelSize.width, height: attributes.messageTimeLabelSize.height)
         messageTimestampLabel.frame = CGRect(origin: origin, size: size)

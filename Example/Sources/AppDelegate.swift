@@ -37,7 +37,7 @@ final internal class AppDelegate: UIResponder, UIApplicationDelegate {
         splitViewController.viewControllers = [masterViewController, detailViewController]
         splitViewController.preferredDisplayMode = .allVisible
         
-        window = UIWindow(frame: UIScreen.main.bounds)
+        window = UIWindow(frame: Screen.bounds)
         window?.rootViewController = splitViewController
         window?.makeKeyAndVisible()
         
