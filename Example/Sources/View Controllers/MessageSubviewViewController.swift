@@ -32,10 +32,12 @@ final class MessageSubviewViewController: BasicExampleViewController {
     
     private let subviewInputBar = InputBarAccessoryView()
     
+#if !os(visionOS)
     // In order to reach the subviewInputBar
     override var inputAccessoryView: UIView?{
         return self.subviewInputBar
     }
+#endif
     
     override func viewDidLoad() {
         super.viewDidLoad()

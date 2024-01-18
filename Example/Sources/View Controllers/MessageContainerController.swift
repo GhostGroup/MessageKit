@@ -47,10 +47,12 @@ final class MessageContainerController: UIViewController {
         return conversationViewController.canBecomeFirstResponder
     }
     
+#if !os(visionOS)
     /// Required for the `MessageInputBar` to be visible
     override var inputAccessoryView: UIView? {
         return conversationViewController.inputAccessoryView
     }
+#endif
     
     override func viewDidLoad() {
         super.viewDidLoad()

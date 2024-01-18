@@ -77,10 +77,12 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
     open override var canBecomeFirstResponder: Bool {
         return true
     }
-
+    
+#if !os(visionOS)
     open override var inputAccessoryView: UIView? {
         return messageInputBar
     }
+#endif
 
     open override var shouldAutorotate: Bool {
         return false
